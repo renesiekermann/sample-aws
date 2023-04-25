@@ -18,6 +18,8 @@ module "vpc" {
 
   enable_dns_hostnames = true
 
+  map_public_ip_on_launch = true
+
   public_subnet_tags = {
     "kubernetes.io/cluster/${var.env_name}-eks-cluster" = "shared"
     "kubernetes.io/role/elb"                            = 1
@@ -114,7 +116,7 @@ resource "aws_iam_instance_profile" "mongodb" {
 
 module "mongodb_backup_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 3.8.0"
+  version = "~> 3.8.1"
 
   bucket_prefix = "${var.env_name}-mongodb-backup-"
   acl           = "public-read"
