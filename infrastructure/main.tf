@@ -119,6 +119,7 @@ module "mongodb_backup_bucket" {
   version = "~> 3.8.1"
 
   bucket_prefix = "${var.env_name}-mongodb-backup-"
+  control_object_ownership = true
   acl           = "public-read"
 
   tags = var.tags
